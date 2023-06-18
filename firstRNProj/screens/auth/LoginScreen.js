@@ -28,8 +28,8 @@ export default function LoginScreen({ navigation }) {
   const [state, setState] = useState(initialState);
 
   const { height, width } = useWindowDimensions();
-  console.log('width', width);
-  console.log('height', height);
+  //console.log('width', width);
+  //console.log('height', height);
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
