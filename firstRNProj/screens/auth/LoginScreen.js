@@ -38,7 +38,7 @@ export default function LoginScreen({ navigation }) {
     setState(initialState)
   };
 
- 
+ //source={require('../../assets/images/1637898513_1-gamerwall-pro-p-oboi-na-telefon-kosmicheskie-peizazhi-vert-1.jpg')}
  
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
@@ -46,7 +46,7 @@ export default function LoginScreen({ navigation }) {
       
         <ImageBackground
           style={styles.backgroundImg}
-          source={require('../../assets/images/1637898513_1-gamerwall-pro-p-oboi-na-telefon-kosmicheskie-peizazhi-vert-1.jpg')}>
+          >
           <View style={{
             ...styles.form,
             marginBottom: isShowKeyboard ? 50 : 200,

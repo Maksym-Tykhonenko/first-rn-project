@@ -1,20 +1,24 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState} from "react";
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity,  } from "react-native";
 
-const StartPage = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
 
-
+//source={require('')}
     return (
 
         <View style={styles.conteiner}>
             <ImageBackground
                 style={styles.backgroundImg}
-                source={require('./assets/images/orange.jpg')}>
+                
+            >
                 <View style={styles.btnConteiner}>
-                    <TouchableOpacity style={styles.btn} >
+                    <TouchableOpacity
+                        style={styles.btn}
+                        onPress={() => navigation.navigate('LevelsScreen')}
+                        >
                         <Text style={{ fontWeight: 'bold' }}>START GAME</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.btn}>
+                    <TouchableOpacity onPress={() => navigation.navigate('PrivacyPolicy')} style={styles.btn}>
                         <Text style={{ fontWeight: 'bold' }}>PRIVACY POLICY</Text>
                     </TouchableOpacity>
                 </View>
@@ -39,7 +43,7 @@ const styles = StyleSheet.create({
   },
   btnConteiner: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -52,10 +56,10 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     borderRadius: 50,
     backgroundColor: 'gray',
-    width: 130,
+    width: 170,
     height: 40,
     opacity: 0.6,
   }
 });
 
-export default StartPage;
+export default HomeScreen;
