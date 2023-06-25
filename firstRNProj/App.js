@@ -1,6 +1,8 @@
 import React, { } from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+
 
 
 import HomeScreen from "./screens/projectScreen/HomeScreen";
@@ -21,6 +23,7 @@ import TwelfthLvl from "./screens/projectScreen/TwelfthLvl";
 import ThirteenthLvl from "./screens/projectScreen/ThirteenthLvl";
 import FourteenthLvl from "./screens/projectScreen/FourteenthLvl";
 import FifteenthLvl from "./screens/projectScreen/FifteenthLvl";
+import { store } from "./redax/store";
 //const Stack = createStackNavigator();
 
 const App = () => {
@@ -28,29 +31,32 @@ const App = () => {
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
-        <Stack.Screen name="LevelsScreen" component={LevelsScreen} />
-        <Stack.Screen name="1 Lvl" component={FirstLvl} />
-        <Stack.Screen name="2 Lvl" component={SecondLvl} />
-        <Stack.Screen name="3 Lvl" component={ThirdLvl} />
-        <Stack.Screen name="4 Lvl" component={FourthLvl} />
-        <Stack.Screen name="5 Lvl" component={FifthLvl} />
-        <Stack.Screen name="6 Lvl" component={SixthLvl} />
-        <Stack.Screen name="7 Lvl" component={SeventhLvl} />
-        <Stack.Screen name="8 Lvl" component={EighthhLvl} />
-        <Stack.Screen name="9 Lvl" component={NinthLvl} />
-        <Stack.Screen name="10 Lvl" component={TenthLvl} />
-        <Stack.Screen name="11 Lvl" component={EleventhLvl} />
-        <Stack.Screen name="12 Lvl" component={TwelfthLvl} />
-        <Stack.Screen name="13 Lvl" component={ThirteenthLvl} />
-        <Stack.Screen name="14 Lvl" component={FourteenthLvl} />
-        <Stack.Screen name="15 Lvl" component={FifteenthLvl} />
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+          <Stack.Screen name="LevelsScreen" component={LevelsScreen} />
+          <Stack.Screen name="1 Lvl" component={FirstLvl} />
+          <Stack.Screen name="2 Lvl" component={SecondLvl} />
+          <Stack.Screen name="3 Lvl" component={ThirdLvl} />
+          <Stack.Screen name="4 Lvl" component={FourthLvl} />
+          <Stack.Screen name="5 Lvl" component={FifthLvl} />
+          <Stack.Screen name="6 Lvl" component={SixthLvl} />
+          <Stack.Screen name="7 Lvl" component={SeventhLvl} />
+          <Stack.Screen name="8 Lvl" component={EighthhLvl} />
+          <Stack.Screen name="9 Lvl" component={NinthLvl} />
+          <Stack.Screen name="10 Lvl" component={TenthLvl} />
+          <Stack.Screen name="11 Lvl" component={EleventhLvl} />
+          <Stack.Screen name="12 Lvl" component={TwelfthLvl} />
+          <Stack.Screen name="13 Lvl" component={ThirteenthLvl} />
+          <Stack.Screen name="14 Lvl" component={FourteenthLvl} />
+          <Stack.Screen name="15 Lvl" component={FifteenthLvl} />
 
-      </Stack.Navigator>
-    </NavigationContainer>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+    
   );
 };
 export default App;

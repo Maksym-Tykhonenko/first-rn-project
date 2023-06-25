@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import { View, Button } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const LevelsScreen = ({ navigation }) => {
+  //тут вместо useState вызвать useSelector
+  //и назв его unlockedLevels
+  const unlockedLevels = useSelector(state => state.myUnlockdLvl)
+  console.log(unlockedLevels);
   
-  const [unlockedLevels, setUnlockedLevels] = useState(3); // Начально доступен только первый уровень
-
   const handleLevelSelect = (level) => {
     if (level <= unlockedLevels) {
       navigation.navigate(`${level} Lvl`);

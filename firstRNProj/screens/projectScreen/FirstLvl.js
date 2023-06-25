@@ -1,20 +1,23 @@
-
-
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Alert, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, Alert, TouchableOpacity, Text, Button } from 'react-native';
+import { useDispatch } from 'react-redux/es/exports';
 
 import GameTile from '../../components/FirstLvl/GameTile';
 import Timer from '../../components/Timer/Timer';
+
+import { incrementLvl } from '../../redax/store';
 
 const FirstLvl = ({navigation}) => {
 
     const [board, setBoard] = useState(
         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, '']);
     const [firtRender, setFirtRender] = useState(true);
-    const [complited, setComplited] = useState(true);
+    const [complited, setComplited] = useState(false);
+
+    const dispatch = useDispatch();
 
     const level = 1;
-    const timer = 5 * 60;
+    let timer = 5 * 60;
 
 //перемешивает пазлы при первом рендере
     useEffect(() => {
@@ -29,9 +32,13 @@ const FirstLvl = ({navigation}) => {
         else if (isBoardSolved()) {
             Alert.alert('Ты победил!');
             setComplited(true);
+            //тут вставить dispatch
+             addAnlocadLvl();
         }
     }, [board]);
- 
+//
+    
+
 //пров. возможность перемещения плитки
     const handleTilePress = (index) => {
         const newBoard = [...board];
@@ -74,15 +81,25 @@ const FirstLvl = ({navigation}) => {
         }
         return true;
     };
-
-//изм уровня игры
-//    const handleLevelChange = () => {
-//    setLevel((prevLevel) => prevLevel + 1);
-//  };
+////////////////////////////
+    const addAnlocadLvl = () => {
+        dispatch(incrementLvl(1));
+    };
+    const handleNavigateToNextLvl = () => {
+        navigation.navigate('2 Lvl')
+    };
+    const goToLvlList = () => {
+        navigation.navigate('LevelsScreen')
+    }
 
     return (
         <View style={styles.container}>
+            <Button 
+                title='Lvl list'
+                onPress={goToLvlList}
+                style={styles.lvlListBtn } />
             <Timer time={timer} />
+            
             <View style={styles.board}>
                 {board.map((value, index) => (
                     <GameTile
@@ -94,7 +111,8 @@ const FirstLvl = ({navigation}) => {
             </View>
             {complited ? (<TouchableOpacity
                 style={styles.levelButton}
-                onPress={() => navigation.navigate('2 Lvl')}>
+                onPress={handleNavigateToNextLvl}
+            >
                 <Text style={styles.levelButtonText}>Next Level</Text>
             </TouchableOpacity>) : (<Text style={styles.levelText}>Level: {level}</Text>)}
             
@@ -107,7 +125,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+    alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
     board: {
@@ -132,6 +150,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginBottom: 10,
     },
+    lvlListBtn: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        zIndex: 9999,
+    }
 });
 
 export default FirstLvl;
