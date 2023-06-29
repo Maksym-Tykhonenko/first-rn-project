@@ -41,15 +41,15 @@ const Timer = ({time}) => {
      }
     
     return (
-        <View>
+        <View style={styles.container}>
             {isRuning ? (<TouchableOpacity
                 style={styles.btnStop}
                 onPress={handleChangeTimerRunState}>
-                <Text>Stop</Text>
+                <Text style={{color: '#FFD700', fontSize: 25,}}>Stop</Text>
             </TouchableOpacity>) : (<TouchableOpacity
                 style={styles.btnPlay}
                 onPress={handleChangeTimerRunState}>
-                <Text>Play</Text>
+                <Text style={{color: '#FFD700', fontSize: 25,}}>Play</Text>
             </TouchableOpacity>)}
             
             <Text style={styles.timerText}>{formatTime(timer)}</Text>
@@ -58,26 +58,54 @@ const Timer = ({time}) => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        marginBottom: 20,
+        marginTop: 40,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     timerText: {
-        fontSize: 20,
-        marginBottom: 10,
+        fontSize: 40,
+        color: '#000205',
+        borderWidth: 1,
+        borderColor: '#FFD700',
+        borderRadius: 3,
+        color: '#FFD700',
+        paddingLeft: 10,
+        paddingRight: 10,
+        backgroundColor: '#2E3A4D',
+        height: 60,
     },
     btnStop: {
+        marginRight: 10,
+        color: '#000205',
         borderWidth: 1,
-        borderRadius: 50,
-        width: 40,
-        height: 40,
-        alignItems: 'center',
+        borderColor: '#FFD700',
+        borderRadius: 3,
+        color: '#FFD700',
+        paddingLeft: 10,
+        paddingRight: 10,
+        backgroundColor: '#2E3A4D',
+        height: 60,
         justifyContent: 'center',
+        alignItems: 'center',
         /**/
     },
     btnPlay: {
+        marginRight: 10,
+        color: '#000205',
         borderWidth: 1,
-        borderRadius: 50,
-        width: 40,
-        height: 40,
-        alignItems: 'center',
+        borderColor: '#FFD700',
+        borderRadius: 3,
+        color: '#FFD700',
+        paddingLeft: 12,
+        paddingRight: 12,
+        backgroundColor: '#2E3A4D',
+        height: 60,
         justifyContent: 'center',
+        alignItems: 'center',
         /**/
     },
 });

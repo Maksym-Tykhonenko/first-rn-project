@@ -3,29 +3,31 @@ import { View, Text, StyleSheet, ImageBackground, TouchableOpacity,  } from "rea
 
 const HomeScreen = ({ navigation }) => {
 
-//source={require('')}
-    return (
+//
+  return (
 
-        <View style={styles.conteiner}>
-            <ImageBackground
-                style={styles.backgroundImg}
-                
-            >
-                <View style={styles.btnConteiner}>
-                    <TouchableOpacity
-                        style={styles.btn}
-                        onPress={() => navigation.navigate('LevelsScreen')}
-                        >
-                        <Text style={{ fontWeight: 'bold' }}>START GAME</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('PrivacyPolicy')} style={styles.btn}>
-                        <Text style={{ fontWeight: 'bold' }}>PRIVACY POLICY</Text>
-                    </TouchableOpacity>
-                </View>
-            </ImageBackground>
-     
+    <View style={styles.conteiner}>
+      <ImageBackground
+        style={styles.backgroundImg}
+        source={require('../../assets/images/lvl_1/1.png')}
+      >
+        <View style={styles.btnConteiner}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => navigation.navigate('LvlSelection')}
+          >
+            <Text style={{ fontWeight: 'bold', color: '#FFD700' }} >GAME</Text>
+          </TouchableOpacity>
+            
+          <TouchableOpacity onPress={() => navigation.navigate('Rules')} style={styles.btn}>
+            <Text style={{ fontWeight: 'bold', color: '#FFD700' }}>RULES</Text>
+          </TouchableOpacity>
+            
         </View>
-    );
+      </ImageBackground>
+     
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -48,17 +50,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btn: {
-    marginLeft: 10,
-    marginRight: 10,
-    justifyContent: 'center',
+    textDecoration: 'none',
+    marginBottom: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingLeft: 40,
+    paddingRight: 40,
+    borderWidth: 1,
+    borderRadius: 30,
+    borderColor: '#FFD700',
+    width: 200,
+    height: 50,
+    textAlign: 'center',
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: 'red',
-    borderRadius: 50,
-    backgroundColor: 'gray',
-    width: 170,
-    height: 40,
-    opacity: 0.6,
+    backgroundImage: 'linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%)',
+    backgroundSize: 'cover',
+    backgroundColor: '#2E3A4D',
+    opacity: 0.9,
   }
 });
 

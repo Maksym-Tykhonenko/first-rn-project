@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Alert, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, Alert, TouchableOpacity, Text, Button} from 'react-native';
+import { useDispatch } from 'react-redux/es/exports';
 
 import GameTile from '../../components/FirstLvl/GameTile';
 import Timer from '../../components/Timer/Timer';
+
+import { incrementLvl } from '../../redax/store';
 
 const EleventhLvl = ({ navigation }) => {
 
@@ -10,10 +13,12 @@ const EleventhLvl = ({ navigation }) => {
         [ 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, '']);
     
     const [firtRender, setFirtRender] = useState(true);
-    const [complited, setComplited] = useState(true);
+    const [complited, setComplited] = useState(false);
+
+    const dispatch = useDispatch();
 
     const level = 11;
-    const timer = 5 * 60 - level * 10;
+    const timer = 5 * 60 - level * 10 + 10;
 
 //перемешивает пазлы при первом рендере
     useEffect(() => {
@@ -28,6 +33,7 @@ const EleventhLvl = ({ navigation }) => {
         else if (isBoardSolved()) {
             Alert.alert('Ты победил!');
             setComplited(true);
+            addAnlocadLvl();
         }
     }, [board]);
  
@@ -74,8 +80,20 @@ const EleventhLvl = ({ navigation }) => {
         return true;
     };
 
+    const addAnlocadLvl = () => {
+        dispatch(incrementLvl(1));
+    };
+
+    const goToLvlList = () => {
+        navigation.navigate('LevelsScreen')
+    };
+
     return (
         <View style={styles.container}>
+            <Button 
+                title='Lvl list'
+                onPress={goToLvlList}
+                style={styles.lvlListBtn } />
             <Timer time={timer} />
             <View style={styles.board}>
                 {board.map((value, index) => (
@@ -123,7 +141,13 @@ const styles = StyleSheet.create({
   levelText: {
     fontSize: 18,
     marginBottom: 10,
-  },
+    },
+  lvlListBtn: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        zIndex: 9999,
+    }
 });
 
 export default EleventhLvl;

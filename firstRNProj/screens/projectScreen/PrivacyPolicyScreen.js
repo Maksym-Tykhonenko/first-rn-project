@@ -1,79 +1,94 @@
 import React, {useState} from "react";
-import { StyleSheet, ScrollView, Text,  } from "react-native";
+import { StyleSheet, View, ScrollView, Text, ImageBackground, TouchableOpacity,  } from "react-native";
 
-const PrivacyPolicy = ({navigation}) => {
+const PrivacyPolicy = ({ navigation }) => {
 
  
 
     return (
-        <ScrollView>
-            <Text
-                style={{
-                marginHorizontal: 40,
-                marginBottom: 30,
-                marginTop: 40,
-            }}><Text>Privacy Policy:</Text>
-                <Text>
-                    At our game, we value your privacy and are committed to protecting
-                    your personal information. This Privacy Policy
-                    explains how we collect, use, and disclose information when you use
-                    our mobile game on your smartphone. By downloading and playing our game, you agree to the terms of this Privacy Policy.
-                </Text>
-                <Text> 1. Information Collection:
-                    We may collect certain information from you while
-                    you use our game.
-                    This information includes:
+        <View style={styles.container}>
+            <ImageBackground
+                style={styles.backgroundImg}
+                source={require('../../assets/images/lvl_1/1.png')}>
+                <ScrollView style={styles.scrollConteiner}>
+                    <Text style={styles.headText}>Rules:</Text>
 
-                    - Device Information: We may collect information
-                    about your device,
-                    such as the device model, operating system version,
-                    unique device identifiers, and mobile network information.
-                    - Gameplay Data: We may collect data related to your gameplay, such
-                    as your progress, achievements, and game preferences.
-                    - Analytics Information: We may collect anonymous analytics data,
-                    including your interactions with the game, in order to improve our game and enhance
-                    your gaming experience.</Text>
-                <Text>
-                    2. Use of Information:
-                    We may use the collected information for the following purposes:
+                    <Text style={styles.text}>
 
-                    - To provide and improve our game: We use the information to deliver and optimize
-                    the game's features, personalize your gaming experience, and enhance gameplay.
-                    - To analyze and understand user behavior: We analyze the collected data to gain
-                    insights into user preferences, gameplay patterns, and overall usage trends, which helps us improve the game and develop new features.
-                    - To communicate with you: We may use your contact information to send you
-                    important updates, notifications, and promotional offers related to the game.
-                    - To enforce our policies: We may use the information to enforce our terms of
-                    service, detect and prevent fraudulent activities, and protect the rights and safety of our users and our game.
-                    - To provide and improve our game: We use the information to deliver and optimize
-                    the game's features, personalize your gaming experience, and enhance gameplay.
-                    - To analyze and understand user behavior: We analyze the collected data to gain
-                    insights into user preferences, gameplay patterns, and overall usage trends, which helps us improve the game and develop new features.
-                    - To communicate with you: We may use your contact information to send you
-                    important updates, notifications, and promotional offers related to the game.
-                    - To enforce our policies: We may use the information to enforce our terms of
-                    service, detect and prevent fraudulent activities, and protect the rights and safety of our users and our game.
-                </Text>
-            </Text>
-           
+                        1. The game "Fifteen Puzzle" consists of a square grid with numbered tiles.
+                        {'\n'}2. The grid size is typically 4x4, containing 15 numbered tiles and one empty space.
+                        {'\n'}3. The objective of the game is to arrange the tiles in ascending order, with the empty space in the bottom right corner.
+                        {'\n'}4. Tiles can be moved horizontally or vertically into the adjacent empty space.
+                        {'\n'}5. To move a tile, click on it or swipe it into the empty space.
+                        {'\n'}6. Only tiles adjacent to the empty space can be moved.
+                        {'\n'}7. The empty space allows tiles to shift and rearrange.
+                        {'\n'}8. The game is won when all the tiles are arranged in numerical order with the empty space in the bottom right corner.
+                        {'\n'}9. Some game variations may have a different grid size or different starting configurations.
+                        {'\n'}10. The number of moves taken to solve the puzzle can be recorded and compared with others.
+                        {'\n'}11. The game can be played for fun or as a challenging exercise in logic and problem-solving.
+                    </Text>
+                </ScrollView>
 
-        </ScrollView>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => navigation.navigate('Home')}>
+                    <Text style={styles.buttonText}>{"<-"}</Text>
+                </TouchableOpacity>
+            </ImageBackground>
+            
+        </View>
     );
 };
+
+export default PrivacyPolicy;  
+
+
 const styles = StyleSheet.create({
-    btn: {
-        marginLeft: 10,
-        marginRight: 10,
-        justifyContent: 'center',
+    container: {
+        flex: 1,
+        position: 'relative',
+    },
+    backgroundImg: {
+     flex: 1,
+    },
+    scrollConteiner: {
+        marginTop: 50,
+        marginHorizontal: 20,
+    },
+    headText: {
+        fontSize: 28,
+        color: '#1C2A4D',
+        fontWeight: 'bold',
+    },
+    text: {
+        fontSize: 18,
+        color: '#1C2A4D',
+        fontWeight: 'bold',
+    },
+    button: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        marginRight: 40,
+        textDecoration: 'none',
+        marginBottom: 20,
+        paddingTop: 8,
+        borderWidth: 1,
+        borderRadius: 3,
+        borderColor: '#FFD700',
+        width: 50,
+        height: 50,
+        textAlign: 'center',
         alignItems: 'center',
-        borderWidth: 2,
-        borderColor: 'red',
-        borderRadius: 50,
-        backgroundColor: 'gray',
-        width: 130,
-        height: 40,
-        opacity: 0.6,
-    }
+        backgroundImage: 'linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%)',
+        backgroundSize: 'cover',
+        backgroundColor: '#2E3A4D',
+        opacity: 0.9,
+    },
+    buttonText: {
+        color: '#FFD700',
+        fontSize: 16,
+    },
 });
 
-export default PrivacyPolicy;
+

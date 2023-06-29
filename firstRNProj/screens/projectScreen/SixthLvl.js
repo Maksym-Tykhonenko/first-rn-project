@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Alert, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, Alert, TouchableOpacity, Text, Button } from 'react-native';
+import { useDispatch } from 'react-redux/es/exports';
 
 import GameTile from '../../components/FirstLvl/GameTile';
 import Timer from '../../components/Timer/Timer';
+
+import { incrementLvl } from '../../redax/store';
 
 const SixthLvl = ({ navigation }) => {
 
@@ -10,10 +13,12 @@ const SixthLvl = ({ navigation }) => {
         [ 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, '']);
     
     const [firtRender, setFirtRender] = useState(true);
-    const [complited, setComplited] = useState(true);
+    const [complited, setComplited] = useState(false);
+
+    const dispatch = useDispatch();
 
     const level = 6;
-    const timer = 5 * 60 - level * 10;
+    const timer = 5 * 60 - level * 10 + 10;
 
 //перемешивает пазлы при первом рендере
     useEffect(() => {
@@ -28,6 +33,7 @@ const SixthLvl = ({ navigation }) => {
         else if (isBoardSolved()) {
             Alert.alert('Ты победил!');
             setComplited(true);
+            addAnlocadLvl();
         }
     }, [board]);
  
@@ -74,8 +80,24 @@ const SixthLvl = ({ navigation }) => {
         return true;
     };
 
+    const addAnlocadLvl = () => {
+        dispatch(incrementLvl(1));
+    };
+
+    const handleNavigateToNextLvl = (level) => {
+        navigation.navigate('7 Lvl')
+    };
+
+    const goToLvlList = () => {
+        navigation.navigate('LevelsScreen')
+    };
+
     return (
         <View style={styles.container}>
+            <Button 
+                title='Lvl list'
+                onPress={goToLvlList}
+                style={styles.lvlListBtn } />
             <Timer time={timer} />
             <View style={styles.board}>
                 {board.map((value, index) => (
@@ -88,7 +110,7 @@ const SixthLvl = ({ navigation }) => {
             </View>
              {complited ? (<TouchableOpacity
                 style={styles.levelButton}
-                onPress={() => navigation.navigate('7 Lvl')}>
+                onPress={() => handleNavigateToNextLvl}>
                 <Text style={styles.levelButtonText}>Next Level</Text>
             </TouchableOpacity>) : (<Text style={styles.levelText}>Level: {level}</Text>)}
             
@@ -97,33 +119,39 @@ const SixthLvl = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  board: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    width: 300,
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    board: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        width: 300,
     },
   
     levelButton: {
-       marginTop: 20,
-    backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-    levelButtonText: {
-    color: 'white',
-    fontSize: 16,
+        marginTop: 20,
+        backgroundColor: 'blue',
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 10,
     },
-  levelText: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-});
+    levelButtonText: {
+        color: 'white',
+        fontSize: 16,
+    },
+    levelText: {
+        fontSize: 18,
+        marginBottom: 10,
+    },
+    lvlListBtn: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        zIndex: 9999,
+    }
+    });
 
 export default SixthLvl;
